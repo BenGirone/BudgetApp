@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body style="width:100%;">
+    Name: <input id="name" type="text" /><br />
+    Amount: <input id="amountTotal" type="text" /><br />
+    Percentage: <input id="percentage" type="text" /><br />
+    Parent: <input id="parent" type="text" /><br />
+    <button onclick="process()">Enter</button>
+    <p style="width:100%;" id="preview"></p>
+    <script>
+        let head = null;
+
+        function pushIntoTree(entry, parent) {
+            if (!parent) {
+                head = entry;
+                return true;
+            }
+
+            if (!entry.parent || entry.parent == parent.name) {
+                parent.children.push(entry);
+                return true;
+            } else {
+                let counter = 0;
+
+                while (counter < parent.children.length) {
+                    if (pushIntoTree(entry, parent.children[counter]))
+                        return true;
+                    counter++;
+                }
+
+                return false;
+            }
+        }
+
+        function process() {
+            let entry = {
+                name: document.querySelector("#name").value,
+                amountTotal: document.querySelector("#amountTotal").value,
+                percentage: document.querySelector("#percentage").value,
+                parent: document.querySelector("#parent").value,
+                children: []
+            }
+
+            pushIntoTree(entry, head);
+            
+            document.querySelector('#preview').innerHTML = JSON.stringify(head);
+        }
+    </script>
+</body>
+</html>

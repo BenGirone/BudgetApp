@@ -1,0 +1,12 @@
+{
+  "name": "budget-app-js",
+  "version": "0.0.0",
+  "description": "BudgetAppJS",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
