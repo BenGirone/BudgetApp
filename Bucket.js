@@ -47,7 +47,7 @@
     recalculate(this) {
         this.amount = this.amountTotal * this.percentage
 
-        if (this.amount > this.maxAmount):
+        if (this.amount > this.maxAmount)
             surplus = this.amount - this.maxAmount
 
         this.overflows.forEach(function (overflow) {
